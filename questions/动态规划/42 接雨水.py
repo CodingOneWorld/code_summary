@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+
+'''
+给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+
+
+
+示例 1：
+
+输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+输出：6
+解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
+
+示例 2：
+
+输入：height = [4,2,0,3,2,5]
+输出：9
+
+'''
+from _ast import List
+
+
+# 暴力解法
+# 搜索每个位置左边，右边最高的位置，计算该位置能存储水的面积
+class Solution:
+    def trap(self, height):
+
+        left=0
+        right=0
+        S=0
+
+        if len(height)<=2:
+            return 0
+
+        if len(set(height)) <= 1:
+            return 0
+
+        for i in range(1,len(height)-1):
+            print(i)
+            left=max(height[0:i])
+            right=max(height[i+1:])
+
+            target=min(left,right)
+            s=target-height[i] if target>height[i] else 0
+            S+=s
+
+        return S
+
+
+
+height = [4,2,0,3,2,5]
+so=Solution()
+res=so.trap(height)
+print(res)
+
+
