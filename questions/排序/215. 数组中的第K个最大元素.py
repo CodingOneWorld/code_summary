@@ -38,11 +38,20 @@ class Solution:
                 return nums
             else:
                 # 随机选取划分值，避免最坏情况
-                mid_index=random.randint(0,len(nums))
-                nums[0],nums[mid_index]=nums[mid_index],nums[0]
+                # mid_index=random.randint(0,len(nums))
+                # nums[0],nums[mid_index]=nums[mid_index],nums[0]
                 mid=nums[0]
                 left=[i for i in nums[1:] if i <=mid]
                 right=[i for i in nums[1:] if i >mid]
                 return quick_sort(left)+[mid]+quick_sort(right)
 
         return quick_sort(nums)[-k]
+
+
+nums=[3,2,1,5,6,4]
+k = 2
+nums=[3,2,3,1,2,4,5,5,6]
+k=4
+so=Solution()
+res=so.findKthLargest(nums,k)
+print(res)
