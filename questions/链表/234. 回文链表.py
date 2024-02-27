@@ -32,33 +32,29 @@ https://zhuanlan.zhihu.com/p/556866879?utm_id=0
 '''
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 1. 先用快慢指针找到后半部分
-        fast: Optional[ListNode] = head
-        slow: Optional[ListNode] = head
-        while fast:
-            # 快指针每次走两步
-            fast = fast.next
-            if fast:
-                fast = fast.next
+        fast = head
+        slow = head
 
-            # 慢指针每次走一步
-            slow = slow.next
+        while fast and fast.next:
+            fast=fast.next.next
+            slow=slow.next
 
         # 此时慢指针就指向后半部分的头结点
         #（如果链表结点数是奇数，那么此时必定是正中间结点的后一个）
 
         # 2. 翻转后半部分
-        slow: Optional[ListNode] = Solution.reverse_list(slow)
+        slow = Solution.reverse_list(slow)
 
         # 3. 对比前后是否相等即可
-        l: Optional[ListNode] = head
-        r: Optional[ListNode] = slow
+        l = head
+        r = slow
         while l and r:
             # 如果值不相等，则必定不是回文链表，直接返回 false
             if l.val != r.val:
@@ -72,18 +68,13 @@ class Solution:
         return True
 
     @staticmethod
-    def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
-        # 使用头插法翻转链表
-        head_pre: Optional[ListNode] = ListNode(0)
-        # 若 head 不是空结点，则继续处理
-        while head:
-            # 先获取下一个结点
-            next: Optional[ListNode] = head.next
-            # 再将 head 用头插法放入结果链表中
-            head.next = head_pre.next
-            head_pre.next = head
-            # 接下来处理下一个结点
-            head = next
+    def reverse_list(head):
+        cur,pre=head,None
 
-        # 返回翻转后链表的头结点
-        return head_pre.next
+        while cur:
+            tem=cur.next
+            cur.next=pre
+
+            pre=cur
+            cur=tem
+        return pre

@@ -42,12 +42,11 @@ https://blog.csdn.net/ZhouXin1111112/article/details/132586044
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
-        cur,pre=head,None
+        cur, pre = head, None
         while cur:
-            tem=cur.next
-            cur.next=pre
+            tem = cur.next
+            cur.next = pre
 
-            pre=cur
-            cur=tem
-        return cur
+            pre = cur
+            cur = tem
+        return pre

@@ -66,7 +66,13 @@
 
 进阶：你能否设计一个时间复杂度 O(m + n) 、仅用 O(1) 内存的解决方案？
 
+https://leetcode.cn/problems/intersection-of-two-linked-lists/description/
+
+https://leetcode.cn/problems/intersection-of-two-linked-lists/solutions/12624/intersection-of-two-linked-lists-shuang-zhi-zhen-l
+
 '''
+
+
 
 class Solution:
 
