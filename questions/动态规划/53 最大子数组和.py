@@ -36,18 +36,9 @@
 
 '''
 
+
 class Solution:
     def maxSubArray(self, nums):
-        # 暴力法  超时
-        # sums=[[0]*len(nums)]*len(nums)
-        # max_num=-10000000000000000
-        # for i in range(len(nums)):
-        #     for j in range(i,len(nums)):
-        #         sums[i][j]=sum(nums[i:j+1])
-        #         if max_num<=sums[i][j]:
-        #             max_num=sums[i][j]
-        # return max_num
-
         # 动态规划
         '''状态定义  子问题定义  状态转移方程 初始化
         子问题：以nums[i]结尾的连续子数组和的最大值  dp[i]
@@ -58,9 +49,8 @@ class Solution:
         dp=[0]*len(nums)
         dp[0]=nums[0]
 
-        for i in range(1,len(nums)):
-            temp=dp[i-1]+nums[i]
-            dp[i]=max(nums[i],temp)
+        for i in range(1, len(nums)):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
 
         return max(dp)
 

@@ -20,6 +20,7 @@
 
 '''
 
+
 class Solution:
     def maxProfit(self, prices) -> int:
         maxProfit=0
