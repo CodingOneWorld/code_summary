@@ -47,7 +47,6 @@ class Solution:
 # 优化存储空间
 class Solution:
     def maxProduct(self, nums) -> int:
-        if not nums: return
         res = nums[0]
         pre_max = nums[0]
         pre_min = nums[0]

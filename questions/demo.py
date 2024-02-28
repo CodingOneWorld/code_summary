@@ -19,7 +19,6 @@ print(nums2.sort())
 print(nums[3:])
 print(nums2)
 
-
 matrix=[[1,2,3],
  [4,5,6],
  [7,8,9]]
@@ -52,3 +51,8 @@ if l:
 strs='cba'
 print(sorted(strs))
 print(''.join(sorted(strs)))
+
+nums=[[1,2,3,6,5,4],
+      [1,2,3,6,5,4]]
+
+print(max(nums))

@@ -30,6 +30,8 @@
     matrix[i][j] 为 '0' 或 '1'
 
 https://leetcode.cn/problems/maximal-square/description/
+
+https://leetcode.cn/problems/maximal-square/solutions/51922/dong-tai-gui-hua-kong-jian-you-hua-zhu-xing-jie-2
 '''
 
 class Solution:
@@ -47,4 +49,4 @@ class Solution:
                 if matrix[i-1][j-1]=='1':
                     dp[i][j]=min(dp[i-1][j-1],dp[i-1][j],dp[i][j-1])+1
                     res=max(res,dp[i][j])
-        return res
+        return res*res
