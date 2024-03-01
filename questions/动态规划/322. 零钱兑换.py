@@ -44,6 +44,32 @@ class Solution:
         if amount==0:
             return 0
 
+        # dp
+        dp=[amount+1]*(amount+1)
+
+        for i in range(1,amount+1):
+            for coin in coins:
+                if coin<i:
+                    dp[i]=min(dp[i],dp[i-coin]+1)
+
+        return -1 if dp[amount+1]==amount+1 else dp[amount]
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution:
+    def coinChange(self, coins, amount: int) -> int:
+        if amount==0:
+            return 0
+
         # dp[i] 凑成金额i最少需要多少个硬币
 
         # 初始化
@@ -55,7 +81,6 @@ class Solution:
                 if i>coin:
                     dp[i]=min(dp[i],dp[i-coin]+1)
 
-        # return dp[-1]
         return -1 if dp[amount]==amount+1 else dp[amount]
 
 

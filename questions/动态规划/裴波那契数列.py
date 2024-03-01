@@ -6,13 +6,13 @@ class Solution:
             return 0
         if n==1:
             return 1
-        f=[0 for i in range(n+1)]
-        print(f)
-        f[0]=0
-        f[1]=1
+        dp=[0 for i in range(n+1)]
+        print(dp)
+        dp[0]=0
+        dp[1]=1
         for i in range(2,n+1):
-            f[i]=f[i-1]+f[i-2]
-        return f[n]
+            dp[i]=dp[i-1]+dp[i-2]
+        return dp[n]
 
 if __name__ == '__main__':
     s=Solution()

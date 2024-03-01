@@ -25,11 +25,39 @@
     1 <= k <= nums.length <= 105
     -104 <= nums[i] <= 104
 
-
+https://leetcode.cn/problems/kth-largest-element-in-an-array/solutions/2361969/215-shu-zu-zhong-de-di-k-ge-zui-da-yuan-d786p
 '''
 import random
 
 
+# 快速选择
+class Solution:
+    def findKthLargest(self, nums, k):
+        def quick_select(nums, k):
+            # 随机选择基准数
+            pivot = random.choice(nums)
+            big, equal, small = [], [], []
+            # 将大于、小于、等于 pivot 的元素划分至 big, small, equal 中
+            for num in nums:
+                if num > pivot:
+                    big.append(num)
+                elif num < pivot:
+                    small.append(num)
+                else:
+                    equal.append(num)
+            if k <= len(big):
+                # 第 k 大元素在 big 中，递归划分
+                return quick_select(big, k)
+            if len(nums) - len(small) < k:
+                # 第 k 大元素在 small 中，递归划分
+                return quick_select(small, k - len(nums) + len(small))
+            # 第 k 大元素在 equal 中，直接返回 pivot
+            return pivot
+
+        return quick_select(nums, k)
+
+
+# 快速排序 超时
 class Solution:
     def findKthLargest(self, nums, k: int) -> int:
 
@@ -45,7 +73,7 @@ class Solution:
                 right=[i for i in nums[1:] if i >mid]
                 return quick_sort(left)+[mid]+quick_sort(right)
 
-        return quick_sort(nums)[-k]
+        return quick_sort(nums)[len(nums)-k]
 
 
 nums=[3,2,1,5,6,4]

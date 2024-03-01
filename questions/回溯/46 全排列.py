@@ -35,6 +35,12 @@
 # 路径 选择列表
 # 停止条件 做出选择 回溯 撤销选择
 
+
+
+
+
+
+
 class Solution:
     def permute(self, nums):
         res=[]

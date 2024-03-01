@@ -37,9 +37,11 @@ https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
 '''
 
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        empty,empty_freeze,hold=0,0,-price[0]
+        empty,empty_freeze,hold=0,0,-prices[0]
         for i in range(1,len(prices)):
             empty0=max(empty,empty_freeze)
             empty_freeze0=hold+prices[i]

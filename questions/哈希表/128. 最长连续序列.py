@@ -27,6 +27,27 @@
 
 '''
 
+
+# 动态规划
+# 耗时60ms 击败99.92%使用 Python3 的用户
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+
+        nums = sorted(list(set(nums)))
+
+        dp = [1] * len(nums)
+
+        for i in range(1, len(nums)):
+            dp[i] = dp[i - 1] + 1 if nums[i] - nums[i - 1] == 1 else dp[i]
+
+        return max(dp)
+
+
+
+
+# 哈希表
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         hash_dict=dict()
