@@ -35,21 +35,13 @@
 
 
 '''
-class Solution:
-    def isValid(self, s: str) -> bool:
-        dic={'{': '}', '[': ']', '(': ')', '?': '?'}
-        stack=['?']
-        for c in s:
-            if c in dic:
-                stack.append(c)
-            elif dic[stack.pop()]!=c:
-                return False
-
-        return len(stack)==1
 
 
 
 
+
+
+# 标准答案
 class Solution:
     def isValid(self, s: str) -> bool:
         dic = {'{': '}', '[': ']', '(': ')', '?': '?'}
@@ -62,3 +54,6 @@ class Solution:
         return len(stack) == 1
 
 s = "()[]{}"
+so=Solution()
+res=so.isValid(s)
+print(res)

@@ -50,8 +50,25 @@ class ListNode:
         self.val = x
         self.next = None
 
+class Solution:
+    def hasCycle(self, head) -> bool:
+        # 快慢指针
+        fast=head
+        slow=head
+        while fast and fast.next:
+            fast=fast.next.next
+            slow=slow.next
+
+            if fast==slow:
+                return True
+
+        return False
 
 
+
+
+
+# 快慢指针
 class Solution:
     def hasCycle(self, head) -> bool:
 
@@ -66,22 +83,3 @@ class Solution:
                 return True
 
         return False
-
-
-
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        try:
-            # 双指针解法
-            slow=head
-            fast=head.next  ## 快指针定位在第二个元素
-
-            while slow is not fast:  ## 如果还不相遇
-                slow=slow.next  #走一步
-                fast=fast.next.next  # 走两步
-
-            return True
-
-        except:
-            ## 如果无法实现 try，则返回 False
-            return False

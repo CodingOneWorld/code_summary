@@ -35,6 +35,32 @@ https://leetcode.cn/problems/majority-element/solutions/15585/qiu-zhong-shu-pyth
 
 '''
 
+
+# 计数法
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        set1 = set(nums)
+        for i in set1:
+            if nums.count(i) > (len(nums) // 2):
+                return i
+
+# 哈希表
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        dic = {}
+        set1 = set(nums)
+        for i in nums:
+            dic[i] = dic.get(i,0) + 1
+        for i in set1:
+            if dic.get(i)>(len(nums)//2):
+                return i
+
+# 排序法
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        nums.sort()
+        return nums[len(nums)//2]
+
 # 摩尔投票
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:

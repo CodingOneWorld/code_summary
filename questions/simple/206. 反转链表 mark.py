@@ -36,10 +36,31 @@ https://blog.csdn.net/ZhouXin1111112/article/details/132586044
 '''
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def reverseList(self, head):
+        cur,pre=head,None
+
+        while cur:
+            tem=cur.next
+            cur.next=pre
+
+            pre=cur
+            cur=tem
+
+        return pre
+
+
+
+
+
+
+
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         cur, pre = head, None

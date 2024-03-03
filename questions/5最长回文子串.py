@@ -27,6 +27,37 @@
 
 
 """
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+
+        n=len(s)
+        res=''
+
+        for i in range(n):
+            # 奇数
+            l=i-1
+            r=i+1
+            while l>0 and r<n and s[l]==s[r]:
+                l=i-1
+                r=r+1
+            if r-l-1>len(res):
+                res=s[l+1:r]
+
+            # 偶数
+            l=i
+            r=i+1
+            while l>0 and r<n and s[l]==s[r]:
+                l=i-1
+                r=r+1
+            if r-l-1>len(res):
+                res=s[l+1:r]
+
+        return res
+
+
+
+
+
 
 
 class Solution:

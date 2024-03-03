@@ -36,6 +36,29 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+
+        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 1. 先用快慢指针找到后半部分
@@ -50,7 +73,16 @@ class Solution:
         #（如果链表结点数是奇数，那么此时必定是正中间结点的后一个）
 
         # 2. 翻转后半部分
-        slow = Solution.reverse_list(slow)
+        # slow = Solution.reverse_list(slow)
+        cur, pre = slow, None
+
+        while cur:
+            tem = cur.next
+            cur.next = pre
+
+            pre = cur
+            cur = tem
+        slow=pre
 
         # 3. 对比前后是否相等即可
         l = head

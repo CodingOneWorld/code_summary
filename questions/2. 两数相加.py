@@ -17,6 +17,45 @@ class ListNode:
         self.val = val
         self.next = next
 
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # 解析两个数字
+        # 解析两个数字
+        nums1 = []
+        while l1:
+            nums1.append(l1.val)
+            l1 = l1.next
+
+        num1 = 0
+        for i in range(len(nums1)):
+            num1 += nums1[i] * 10 ** i
+
+        nums2 = []
+        while l2:
+            nums2.append(l2.val)
+            l2 = l2.next
+
+        num2 = 0
+        for i in range(len(nums2)):
+            num2 += nums2[i] * 10 ** i
+
+        num3 = num1 + num2
+
+        nums3 = list(str(num3))
+        nums3.reverse()
+
+        l3 = p = ListNode(0)
+        for i in range(len(nums3)):
+            node = ListNode(int(nums3[i]))
+            p.next = node
+            p = node
+        p.next = None
+
+        return l3.next
+
+
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         head=l1

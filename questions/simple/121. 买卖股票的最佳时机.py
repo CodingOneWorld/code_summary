@@ -23,12 +23,30 @@
 
 class Solution:
     def maxProfit(self, prices) -> int:
-        maxProfit=0
-        for i in range(1,len(prices)):
-            min_price=min(prices[:i])
-            maxProfit=max(maxProfit,prices[i]-min_price)
-        return maxProfit
+        min_price=prices[0]
+        max_profit=0
 
+        for price in prices:
+            min_price=min(min_price,price)
+            max_profit=max(max_profit,price-min_price)
+
+        return max_profit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 动态规划
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         min_price, profit = float('+inf'), 0
