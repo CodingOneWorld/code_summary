@@ -47,32 +47,60 @@ for (int i = 0; i < len; i++) {
     nums 已按升序排列
 
 '''
+class Solution:
+    def removeDuplicates(self, nums):
+        i = 0
+        num = nums[0]
+        count = 0
+
+        while i < len(nums):
+            if nums[i] == num:
+                count += 1
+                if count > 2:
+                    del nums[i]
+                    count -= 1
+                else:
+                    i += 1
+            else:
+                num = nums[i]
+                count = 1
+                i += 1
+
+        return len(nums)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Solution:
     def removeDuplicates(self, nums):
         # 一次循环，建立计数机制，大于2，就删掉
-        i=0
-        count=0
-        num=nums[0]
-        while i<len(nums):
-            print(i)
-            print(num)
-            if nums[i]==num:
-                count+=1
-                print(count)
+        i = 0
+        num = nums[0]
+        count = 0
+
+        while i < len(nums):
+            if nums[i] == num:
+                count += 1
                 if count > 2:
                     del nums[i]
-                    count -=1
+                    count -= 1
                 else:
-                    i+=1
-            elif nums[i]!=num and count<3:
-                num=nums[i]
-                count=1
-                i+=1
+                    i += 1
+            else:
+                num = nums[i]
+                count = 1
+                i += 1
 
-            print(count)
-            print(nums)
-        print(nums)
         return len(nums)
 
 nums=[0,0,1,1,1,1,2,3,3]

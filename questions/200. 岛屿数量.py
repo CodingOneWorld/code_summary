@@ -41,6 +41,24 @@
 
 '''
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 递归
 class Solution(object):
     def numIslands(self, grid):
@@ -100,3 +118,30 @@ class Solution(object):
         self.dfs(grid, i + 1, j)
         self.dfs(grid, i, j + 1)
         self.dfs(grid, i - 1, j)
+
+
+# 广度优先算法  非类函数写法
+class Solution(object):
+    def numIslands(self, grid):
+        m = len(grid)
+        n = len(grid[0])
+        count = 0
+
+        def dfs(i, j, grid):
+            if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == '0':
+                return
+
+            grid[i][j] = '0'
+
+            dfs(i - 1, j, grid)
+            dfs(i + 1, j, grid)
+            dfs(i, j - 1, grid)
+            dfs(i, j + 1, grid)
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    count += 1
+                    dfs(i, j, grid)
+
+        return count
