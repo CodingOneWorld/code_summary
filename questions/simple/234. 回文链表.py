@@ -37,8 +37,38 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # 快慢指针 找中点
+        fast = head
+        slow = head
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+        # 反转
+        cur = slow
+        pre = None
+
+        while cur:
+            tem = cur.next
+            cur.next = pre
+
+            pre = cur
+            cur = tem
+
+        # 比较前后链表是否相等
+        p1 = head
+        p2 = pre
+        print(pre.val)
+
+        while p1 and p2:
+            if p1.val != p2.val:
+                return False
+            p1 = p1.next
+            p2 = p2.next
 
         return True
 

@@ -70,6 +70,7 @@ class Solution:
             key=''.join(sorted(s))
             print(key)
             dic[key].append(s)
+        # return dic.values()
         return list(dic.values())
 
 

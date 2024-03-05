@@ -38,19 +38,19 @@ https://leetcode.cn/problems/find-the-duplicate-number/
 
 二分查找
 
-按题目表达，设数组长度为nnn，则数组中元素∈[1,n−1]\in[1,n-1]∈[1,n−1]，且只有一个重复元素。一个直观的想法，设一个数字k∈[1,n−1]k\in[1,n-1]k∈[1,n−1]，统计数组中小于等于kkk的数字的个数countcountcount：
+按题目表达，设数组长度为n，则数组中元素∈[1,n−1]，且只有一个重复元素。一个直观的想法，设一个数字k∈[1,n−1]，统计数组中小于等于k的数字的个数count：
 
-    若count<=kcount<=kcount<=k，说明重复数字一定在(k,n−1](k,n-1](k,n−1]的范围内。
-    若count>kcount>kcount>k，说明重复数字一定在[0,k][0,k][0,k]的范围内。
+    若count<=k，说明重复数字一定在(k,n−1]的范围内。
+    若count>k，说明重复数字一定在[0,k]的范围内。
 
 利用这个性质，我们使用二分查找逐渐缩小重复数字所在的范围。
 
-    初试化左右 数字 边界left=1,right=n−1left=1,right=n-1left=1,right=n−1
-    循环条件left<rightleft<rightleft<right:
-        mid=(left+right)//2mid=(left+right)//2mid=(left+right)//2
+    初试化左右 数字 边界left=1,right=n−1
+    循环条件left<right:
+        mid=(left+right)//2
         按照性质，统计数组中小于等于midmidmid的元素个数countcountcount
-        若 count<=midcount<=midcount<=mid，说明重复数字一定在(mid,right](mid,right](mid,right]的范围内。令left=mid+1left=mid+1left=mid+1
-        若count>midcount>midcount>mid，说明重复数字一定在[left,mid][left,mid][left,mid]的范围内。令right=midright=midright=mid。
+        若 count<=mid，说明重复数字一定在(mid,right]的范围内。令left=mid+1
+        若count>mid，说明重复数字一定在[left,mid]的范围内。令right=mid
     返回leftleftleft
 
 '''
@@ -61,8 +61,8 @@ class Solution:
         while left<right:
             mid=(left+right)//2
             # 计算小于等于mid的数量count
-            # count<=mid 在左边
-            # count>mid 在右边
+            # count<=mid 在右边
+            # count>mid 在左边
             count=0
             for num in nums:
                 if num<=mid:

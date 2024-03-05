@@ -23,8 +23,36 @@
     1 <= nums.length <= 200
     1 <= nums[i] <= 100
 
+https://leetcode.cn/problems/partition-equal-subset-sum/description/
 
+https://leetcode.cn/problems/partition-equal-subset-sum/solutions/663697/416-fen-ge-deng-he-zi-ji-dong-tai-gui-hu-csk5
 '''
+# test
+class Solution:
+    def canPartition(self, nums) -> bool:
+        if sum(nums)%2!=0:
+            return False
+        target=sum(nums)//2
+
+        dp=[False]*(len(nums)+1)
+        dp[0]=0
+
+        for i in nums:
+            for j in range(target,i-1,-1):
+                dp[j]=dp[j] or dp[j-i]
+
+        return dp[-1]
+
+
+
+
+
+
+
+
+
+
+
 
 class Solution:
     def canPartition(self, nums) -> bool:
@@ -33,6 +61,7 @@ class Solution:
         target = sum(nums) // 2
         print(target)
 
+        # dp数组 dp[j] 和为j的子集是否存在 存在 True  不存在 False
         dp = [False] * (target + 1)
         dp[0] = True
 

@@ -40,3 +40,4 @@ https://leetcode.cn/problems/different-ways-to-add-parentheses/
 
 class Solution:
     def diffWaysToCompute(self, expression: str) -> List[int]:
+        return []

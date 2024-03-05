@@ -49,3 +49,10 @@ class Solution:
                 res += 1
 
         return res
+
+
+x = 1
+y = 4
+so=Solution()
+res=so.hammingDistance(x,y)
+print(res)

@@ -36,45 +36,38 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        # 1. 先用快慢指针找到后半部分
+        # 快慢指针 找中点
         fast = head
         slow = head
 
         while fast and fast.next:
-            fast=fast.next.next
-            slow=slow.next
+            fast = fast.next.next
+            slow = slow.next
 
-        # 此时慢指针就指向后半部分的头结点
-        #（如果链表结点数是奇数，那么此时必定是正中间结点的后一个）
-
-        # 2. 翻转后半部分
-        slow = Solution.reverse_list(slow)
-
-        # 3. 对比前后是否相等即可
-        l = head
-        r = slow
-        while l and r:
-            # 如果值不相等，则必定不是回文链表，直接返回 false
-            if l.val != r.val:
-                return False
-
-            # 如果值相等，则都移动至下一个结点继续对比
-            l = l.next
-            r = r.next
-
-        # 所有值都相等，则是回文链表
-        return True
-
-    @staticmethod
-    def reverse_list(head):
-        cur,pre=head,None
+        # 反转
+        cur = slow
+        pre = None
 
         while cur:
-            tem=cur.next
-            cur.next=pre
+            tem = cur.next
+            cur.next = pre
 
-            pre=cur
-            cur=tem
-        return pre
+            pre = cur
+            cur = tem
+
+        # 比较前后链表是否相等
+        p1 = head
+        p2 = pre
+        print(pre.val)
+
+        while p1 and p2:
+            if p1.val != p2.val:
+                return False
+            p1 = p1.next
+            p2 = p2.next
+
+        return True

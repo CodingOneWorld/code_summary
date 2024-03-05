@@ -28,24 +28,35 @@
 '''
 
 
-# 动态规划
-# 耗时60ms 击败99.92%使用 Python3 的用户
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 寻找连续序列的开头，然后while循环看下一个数在不在数组中，进行count，更新最长的结果到res
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        if len(nums) == 0:
-            return 0
+        res=0
+        nums=set(nums)
+        # 遍历每个数 寻找可作为连续数列开头的数
+        for num in nums:
+            # 找到后，计算当前连续数列的长度，更新res
+            if num-1 not in nums:
+                seq_len=1
+                while num+1 in nums:
+                    seq_len+=1
+                    num=num+1
+                res=max(res,seq_len)
 
-        nums = sorted(list(set(nums)))
-
-        dp = [1] * len(nums)
-
-        for i in range(1, len(nums)):
-            dp[i] = dp[i - 1] + 1 if nums[i] - nums[i - 1] == 1 else dp[i]
-
-        return max(dp)
-
-
-
+        return res
 
 # 哈希表
 class Solution:
@@ -69,7 +80,21 @@ class Solution:
         return max_length
 
 
+# 动态规划  做了排序 不满足时间复杂度为 O(n)
+# 耗时60ms 击败99.92%使用 Python3 的用户
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
 
+        nums = sorted(list(set(nums)))
+
+        dp = [1] * len(nums)
+
+        for i in range(1, len(nums)):
+            dp[i] = dp[i - 1] + 1 if nums[i] - nums[i - 1] == 1 else dp[i]
+
+        return max(dp)
 
 
 
