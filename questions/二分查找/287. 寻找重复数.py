@@ -55,8 +55,8 @@ https://leetcode.cn/problems/find-the-duplicate-number/
 
 '''
 class Solution:
-    def findDuplicate(self, nums) -> int:
-        left=1
+    def findDuplicate(self, nums: List[int]) -> int:
+        left=0
         right=len(nums)-1
         while left<right:
             mid=(left+right)//2

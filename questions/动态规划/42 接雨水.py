@@ -25,9 +25,6 @@ from _ast import List
 # 搜索每个位置左边，右边最高的位置，计算该位置能存储水的面积
 class Solution:
     def trap(self, height):
-
-        left=0
-        right=0
         S=0
 
         if len(height)<=2:
@@ -51,33 +48,6 @@ class Solution:
 # 动态规划
 # 先遍历得到每个下标的左边最大值，右边最大值
 # 再遍历计算每个下标处能接的雨水
-class Solution:
-    def trap(self, height):
-
-        if len(height)<=2:
-            return 0
-
-        if len(set(height))<=1:
-            return 0
-
-        left_max=[0]*len(height)
-        right_max=[0]*len(height)
-
-        left_max[0]=height[0]
-        right_max[-1]=height[-1]
-
-        for i in range(1,len(height)):
-            l_max=max(left_max[i-1],height[i])
-            left_max[i]=l_max
-
-        for i in range(len(height)-2,-1,-1):
-            r_max=max(right_max[i+1],height[i])
-            right_max[i] = r_max
-
-        for i in range(len(height)):
-            s=min(left_max[i],right_max[i])-height[i]
-
-
 class Solution:
     def trap(self, height: List[int]) -> int:
         if not height:
