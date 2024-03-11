@@ -26,7 +26,6 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root) -> int:
-        # 递归终止条件
         if not root:
             return 0
 
@@ -34,6 +33,11 @@ class Solution:
         right=self.maxDepth(root.right)
 
         return max(left,right)+1
+
+
+
+
+
 
 
 

@@ -35,8 +35,29 @@ https://leetcode.cn/problems/climbing-stairs/solutions/2361764/70-pa-lou-ti-dong
 
 """
 
-# 动态规划
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n==1:
+            return 1
+        if n==2:
+            return 2
 
+        fb1=1
+        fb2=2
+
+        for i in range(2,n):
+            fb2=fb1+fb2
+            fb1=fb2
+
+        return fb2
+
+
+
+
+
+
+
+# 动态规划
 # 重叠子问题
 # 最优子结构
 # 状态转移方程

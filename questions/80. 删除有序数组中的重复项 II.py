@@ -49,24 +49,22 @@ for (int i = 0; i < len; i++) {
 '''
 class Solution:
     def removeDuplicates(self, nums):
-        i = 0
-        num = nums[0]
-        count = 0
+        num=nums[0]
+        count=0
 
-        while i < len(nums):
-            if nums[i] == num:
-                count += 1
-                if count > 2:
+        for i in range(len(nums)):
+            if nums[i]==num:
+                count+=1
+                # 比较count
+                if count>2:
                     del nums[i]
-                    count -= 1
+                    count-=1
                 else:
-                    i += 1
+                    i+=1
             else:
-                num = nums[i]
-                count = 1
-                i += 1
-
-        return len(nums)
+                num=nums[i]
+                count=1
+                i+=1
 
 
 

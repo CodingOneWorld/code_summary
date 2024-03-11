@@ -40,6 +40,51 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # 中间切分
+        fast=head
+        slow=head
+        while fast and fast.next:
+            fast=fast.next.next
+            slow=slow.next
+        # 反转后半部分
+        cur,pre=slow,None
+        while cur:
+            tem=cur.next
+            cur.next=pre
+
+            pre=cur
+            cur=tem
+        # 比较前后部分
+        p1=head
+        p2=pre
+        while p1 and p2:
+            if p1.val !=p2.val:
+                return False
+            p1 = p1.next
+            p2 = p2.next
+
+        return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 快慢指针 找中点
         fast = head
         slow = head

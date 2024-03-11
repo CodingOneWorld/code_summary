@@ -22,6 +22,29 @@ class TreeNode:
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
 
+        def recur(l,r):
+            # 终止条件
+            if not l and not r:
+                return True
+            if not l or not r or l.val !=r.val:
+                return False
+
+            return recur(l.left,r.right) and recur(l.right,r.left)
+
+        return recur(root.left,root.right)
+
+
+
+
+
+
+
+
+
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+
         def recur(left,right):
             # 递归终止条件
             if not left and not right:

@@ -42,18 +42,19 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root):
-        # 递归终止条件
         if not root:
             return None
 
-        # 翻转
         root.left,root.right=root.right,root.left
 
-        # 递归
         self.invertTree(root.left)
         self.invertTree(root.right)
 
         return root
+
+
+
+
 
 
 
