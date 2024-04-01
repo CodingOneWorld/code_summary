@@ -16,9 +16,9 @@ def del_stop_words(review, stop_words_set):
     result_list = []
     result = jieba.cut(words)
     for r in result:
-        # if r not in stop_words_set:
+        if r not in stop_words_set:
             result_list.append(r)
-    return result_list
+    return ','.join(result_list)
 
 
 def filter_emoji(desstr, restr=''):
@@ -28,6 +28,20 @@ def filter_emoji(desstr, restr=''):
     except re.error:
         co = re.compile(u'[\uD800-\uDBFF][\uDC00-\uDFFF]')
     return co.sub(restr, desstr)
+
+# 从文件中读取停用词
+def read_from_file(file_name):
+    with open(file_name,"r") as fp:
+        words = fp.read()
+    return words
+
+def get_stop_words(stop_word_file):
+    words = read_from_file(stop_word_file)
+    result = jieba.cut(words)
+    new_words = []
+    for r in result:
+        new_words.append(r)
+    return set(new_words)
 
 
 if __name__ == '__main__':
@@ -39,14 +53,17 @@ if __name__ == '__main__':
     df = df.dropna()
     print(df.head())
 
-    df['content_split'] = df['content'].apply(del_stop_words)
+    stop_words=get_stop_words('stop_words.txt')
+
+    df['content_split'] = df['content'].map(lambda x:del_stop_words(x,stop_words))
     df['con_len'] = df['content'].apply(lambda x: len(x))
     df = df[df.con_len >= 30]
     print(df.head())
 
     users = df['user_id'].values
-    reviews = df['content_split'].values
-    meta_reviews = df['content'].values
+    reviews = df['content_split'].values.tolist()
+    meta_reviews = df['content'].values.tolist()
+    print(reviews[0])
     print('评论数：%d' % (len(reviews)))
 
     # tfidf
@@ -54,7 +71,7 @@ if __name__ == '__main__':
     # vectorizer = CountVectorizer(analyzer='word', token_pattern=u"(?us).*", stop_words=None)
     vectorizer = CountVectorizer(analyzer='word', token_pattern=u"(?u)\\b\\w+\\b", stop_words=None)
     # 计算个词语出现的次数
-    X = vectorizer.fit_transform(reviewArray)
+    X = vectorizer.fit_transform(reviews)
     # 获取词袋中所有文本关键词
     word = vectorizer.get_feature_names()
     # print(word)
@@ -69,8 +86,24 @@ if __name__ == '__main__':
     # 查看数据结构 tfidf[i][j]表示i类文本中的tf-idf权重
     # print(tfidf.toarray())
     # 聚类算法
-    clusters = DBSCAN(eps=0.8, min_samples=3).fit_predict(tfidf.toarray())
+    y_hat = DBSCAN(eps=0.8, min_samples=3).fit_predict(tfidf.toarray())
     # print(clusters)
 
-    # 生成聚类用户组
-    clusters_num = len(np.unique(clusters)) - (1 if -1 in clusters else 0)
+    unique_y_hat = np.unique(y_hat)
+    # 获取类簇数 去除离群点-1
+    n_clusters = len(unique_y_hat) - (1 if -1 in y_hat else 0)
+    print("类别:", unique_y_hat, "；聚类簇数目:", n_clusters)
+
+    # 输出聚类的评论文本
+    clusters_res = [[] for i in range(n_clusters)]
+    for idx, c_idx in enumerate(y_hat):
+        clusters_res[c_idx].append(meta_reviews[idx])
+
+    for c in clusters_res[:1]:
+        print(len(c))
+        for r in c:
+            print(r)
+        print('--------------------------------')
+
+
+
