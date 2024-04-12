@@ -92,6 +92,8 @@ def networkx_word2vec_deepwalk(G):
     # 提取向量表示
     nodes_wv = np.array([model.wv.get_vector(str(i)) for i in range(len(model.wv))])
 
+    return nodes_wv
+
 
 if __name__ == '__main__':
     # 创建或加载一个图
@@ -103,6 +105,9 @@ if __name__ == '__main__':
     # plt.show()
 
     # karateclub_DeepWalk(G)
+
+    nodes_wv=networkx_word2vec_deepwalk(G)
+    print(nodes_wv)
 
 
 
