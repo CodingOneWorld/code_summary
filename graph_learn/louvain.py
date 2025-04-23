@@ -5,6 +5,7 @@ import networkx as nx
 from community import community_louvain
 
 #Louvain算法
+# pip3 install python-louvain
 
 # 空手道俱乐部
 G   = nx.karate_club_graph()
