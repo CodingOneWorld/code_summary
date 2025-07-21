@@ -31,7 +31,22 @@ https://leetcode.cn/problems/move-zeroes/
 '''
 
 
+
 # 移动零
+# 借助临时数组解法
+class Solution:
+    def moveZeroes(self, nums) -> None:
+        tem=[]
+        for num in nums:
+            if num:
+                tem.append(num)
+
+        for i in range(len(nums)):
+            if i <len(nums)-len(tem):
+                nums[i]=0
+            else:
+                nums[i]=tem[i-len(nums)+len(tem)]
+
 # 第一次遇到非零元素，将非零元素与数组nums[0]互换，第二次遇到非零元素，将非零元素与nums[1]互换，第三次遇到非零元素，将非零元素与nums[2]，以此类推，直到遍历完数组
 class Solution:
     def moveZeroes(self, nums) -> None:

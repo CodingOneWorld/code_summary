@@ -18,6 +18,34 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+        def bst(root,min_v,max_v):
+            if not root:
+                return True
+
+            if root.val>min_v and root.val<max_v:
+                pass
+            else:
+                return False
+
+            if bst(root.left,min_v,root.val)==False:
+                return False
+            if bst(root.right,root.val,max_v)==False:
+                return False
+
+            return True
+
+        return bst(root,float('-inf'),float('inf'))
+
+
+
+
+
+
+
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         return self.dg(root,float('-inf'),float('inf'))

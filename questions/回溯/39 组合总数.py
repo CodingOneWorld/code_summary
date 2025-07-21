@@ -40,16 +40,11 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
 
 '''
 
-# 感觉是回溯法
-# 回溯法要诀    路径  选择列表   停止条件
-from _ast import List
-
 class Solution:
     def combinationSum(self, candidates, target):
         res=[]
 
-        def backtrack(nums,track):
-            # 结束条件
+        def backTrack(nums,track):
             if sum(track)>target:
                 return
 
@@ -59,15 +54,57 @@ class Solution:
 
             for i in range(len(nums)):
                 if sum(track)+nums[i]>target:
-                    break
+                    continue
+
                 track.append(nums[i])
-                backtrack(nums[i:],track)
+                backTrack(nums[i:],track)
                 track.pop()
 
-        candidates.sort()
-        backtrack(candidates,[])
+        backTrack(candidates,[])
 
         return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 感觉是回溯法
+# 回溯法要诀    路径  选择列表   停止条件
+from _ast import List
+
+# class Solution:
+#     def combinationSum(self, candidates, target):
+#         res=[]
+#
+#         def backtrack(nums,track):
+#             # 结束条件
+#             if sum(track)>target:
+#                 return
+#
+#             if sum(track)==target:
+#                 res.append(track[:])
+#                 return
+#
+#             for i in range(len(nums)):
+#                 if sum(track)+nums[i]>target:
+#                     break
+#                 track.append(nums[i])
+#                 backtrack(nums[i:],track)
+#                 track.pop()
+#
+#         candidates.sort()
+#         backtrack(candidates,[])
+#
+#         return res
 
 
 
@@ -107,8 +144,8 @@ class Solution:
 #
 #         return res
 
-candidates=[8,7,4,3]
-target=11
+candidates=[2,3,6,7]
+target=7
 
 so=Solution()
 res=so.combinationSum(candidates,target)

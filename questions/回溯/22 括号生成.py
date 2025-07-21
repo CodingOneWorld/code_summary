@@ -29,7 +29,6 @@ class Solution:
         def backtrack(S, left, right):
             if len(S) == 2 * n:
                 ans.append(''.join(S))
-                return
             if left < n:
                 S.append('(')
                 backtrack(S, left+1, right)

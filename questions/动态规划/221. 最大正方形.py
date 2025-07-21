@@ -32,6 +32,8 @@
 https://leetcode.cn/problems/maximal-square/description/
 
 https://leetcode.cn/problems/maximal-square/solutions/51922/dong-tai-gui-hua-kong-jian-you-hua-zhu-xing-jie-2
+
+https://blog.csdn.net/AlbertDS/article/details/142649675
 '''
 
 class Solution:

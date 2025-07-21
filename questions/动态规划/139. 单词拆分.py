@@ -34,6 +34,10 @@
     1 <= wordDict[i].length <= 20
     s 和 wordDict[i] 仅由小写英文字母组成
     wordDict 中的所有字符串 互不相同
+
+
+
+    https://blog.csdn.net/AlbertDS/article/details/142656153
 '''
 
 
@@ -48,18 +52,15 @@
 class Solution:
     def wordBreak(self, s: str, wordDict) -> bool:
 
-        for word in wordDict:
-            if word in s:
-                index = s.find(word)
-                while index!=-1:
-                    s=s[0:index]+s[index+len(word):]
-                    if len(s)==0:
-                        return True
-                    index = s.find(word)
-        if len(s)==0:
-            return True
-        else:
-            return False
+        dp=[False]*(len(s)+1)
+        dp[0]=True
+
+        for i in range(1,len(s)+1):
+            for j in range(i):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i]=True
+
+        return dp[len(s)]
 
 
 s = "leetcode"

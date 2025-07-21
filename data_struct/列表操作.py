@@ -42,7 +42,8 @@ L.remove(var)  #删除第一次出现的该元素
 L.count(var)  #该元素在列表中出现的个数
 L.index(var)  #该元素的位置,无则抛异常
 L.extend(list) #追加list，即合并list到L上
-L.sort()    #排序   原数组操作，没有返回值
+L.sort()    #排序   原数组操作，没有返回值   默认是正序  
+  dp.sort(reverse=True)  倒序
 L.reverse()   #倒序   原数组操作，没有返回值
 list 操作符:,+,*，关键字del
 a[1:]    #片段操作符，用于子list的提取
