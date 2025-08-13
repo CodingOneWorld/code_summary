@@ -36,6 +36,39 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
+        res=[]
+
+        queue=[root]
+        while queue:
+            tem=[]
+            for node in queue:
+                if node:
+                    res.append(node.val)
+                    tem.append(node.left)
+                    tem.append(node.right)
+            queue=tem
+
+        return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
 
         ls=[]
         queue=[root]

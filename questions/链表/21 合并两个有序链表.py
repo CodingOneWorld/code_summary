@@ -44,6 +44,44 @@ l2=ListNode(1)
 l2.next=ListNode(3)
 l2.next.next=ListNode(4)
 
+class Solution:
+    def mergeTwoLists(self, list1, list2):
+        l1=list1
+        l2=list2
+
+        head=tem=ListNode(0)
+
+        while l1 and l2:
+            if l1.val<=l2.val:
+                tem.next=l1
+                tem=tem.next
+
+                l1=l1.next
+            elif l1.val>l2.val:
+                tem.next=l2
+                tem=tem.next
+
+                l2=l2.next
+
+        if l1:
+            tem.next=l1
+
+        if l2:
+            tem.next=l2
+
+        return head.next
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Solution:
     def mergeTwoLists(self, list1, list2):

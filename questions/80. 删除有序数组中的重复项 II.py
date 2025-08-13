@@ -47,24 +47,9 @@ for (int i = 0; i < len; i++) {
     nums 已按升序排列
 
 '''
-class Solution:
-    def removeDuplicates(self, nums):
-        num=nums[0]
-        count=0
 
-        for i in range(len(nums)):
-            if nums[i]==num:
-                count+=1
-                # 比较count
-                if count>2:
-                    del nums[i]
-                    count-=1
-                else:
-                    i+=1
-            else:
-                num=nums[i]
-                count=1
-                i+=1
+# class Solution:
+#     def removeDuplicates(self, nums):
 
 
 
