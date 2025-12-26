@@ -47,6 +47,20 @@ https://blog.csdn.net/weixin_44807903/article/details/133017174
 #         self.right = None
 
 class Solution:
+    def fun(self,root,p,q):
+        if not root or root==p or root==q:
+            return root
+        left=self.fun(root.left,p,q)
+        right=self.fun(root.right,p,q)
+
+        if right and left:
+            return root
+
+        return left if left else right
+
+
+
+class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         p_father = []
         q_father = []
