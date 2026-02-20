@@ -51,16 +51,6 @@ class ListNode:
         self.next = None
 
 
-class Solution:
-    def hasCycle(self, head) -> bool:
-        if not head:
-            return False
-        fast=head
-        slow=head
-
-        while fast and fast.next:
-
-
 
 
 

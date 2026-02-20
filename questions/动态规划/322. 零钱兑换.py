@@ -39,50 +39,6 @@ https://leetcode.cn/problems/coin-change/
 选择DP
 '''
 
-class Solution:
-    def coinChange(self, coins, amount: int) -> int:
-        if amount==0:
-            return 0
-
-        # dp
-        dp=[amount+1]*(amount+1)
-
-        for i in range(1,amount+1):
-            for coin in coins:
-                if coin<i:
-                    dp[i]=min(dp[i],dp[i-coin]+1)
-
-        return -1 if dp[amount+1]==amount+1 else dp[amount]
-
-
-
-
-
-
-
-
-
-
-
-
-class Solution:
-    def coinChange(self, coins, amount: int) -> int:
-        if amount==0:
-            return 0
-
-        # dp[i] 凑成金额i最少需要多少个硬币
-
-        # 初始化
-        # dp=[i for i in range(amount+1)]
-        dp=[amount+1]*(amount+1)
-
-        for i in range(1,amount+1):
-            for coin in coins:
-                if i>coin:
-                    dp[i]=min(dp[i],dp[i-coin]+1)
-
-        return -1 if dp[amount]==amount+1 else dp[amount]
-
 
 
 class Solution:
@@ -93,17 +49,18 @@ class Solution:
         状态转移方程：dp[i]=argmin coin dp[i-cion] +1
         '''
 
-        dp=[amount+1]*(amount+1)
-        dp[0]=0
+        if amount == 0:
+            return 0
 
-        for i in range(1,amount+1):
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
+
+        for i in range(1, amount + 1):
             for j in coins:
-                if j >i:
-                    continue
-                dp[i]=min(dp[i],dp[i-j]+1)
-            print(dp)
+                if j <= i:
+                    dp[i] = min(dp[i], dp[i - j] + 1)
 
-        return -1 if (dp[amount] == amount + 1) else dp[amount]
+        return -1 if dp[amount] == amount + 1 else dp[amount]
 
         # 优化
         dp = [amount + 1] * (amount + 1)  # 初始化为一个较大的值，如 +inf 或 amount+1
@@ -124,24 +81,4 @@ coins = [1, 2, 5]
 amount = 11
 so=Solution()
 res=so.coinChange(coins,amount)
-print(res)
-
-
-
-def coinChange(coins, amount: int) -> int:
-    # 最优子结构  状态转移
-    # dp[i] 金额i最少需要的硬币个数
-    # 初始值 每个金额最多由他本身数目的个数组成
-    dp=[i for i in range(amount+1)]
-    dp[0]=0
-    for i in range(amount+1):
-        for coin in coins:
-            if i-coin<0:
-                continue
-            dp[i]=min(dp[i],dp[i-coin]+1)
-    return dp[-1]
-
-coins = [1, 2, 5]
-amount = 11
-res=coinChange(coins,amount)
 print(res)

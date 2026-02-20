@@ -33,28 +33,6 @@
 '''
 from _ast import List
 
-
-class Solution:
-    def groupAnagrams(self, strs):
-        set_str=set([])
-        for s in strs:
-            set_str.add(''.join(sorted(s)))
-
-        # 建立字典
-        dic={}
-        i=0
-        for s in set_str:
-            dic[s]=i
-            i+=1
-
-        res=[[] for i in range(len(dic.keys()))]
-        for s in strs:
-            s2=''.join(sorted(s))
-            res[dic[s2]].append(s)
-
-        return res
-
-
 class Solution:
     def groupAnagrams(self, strs):
         set_strs=set()
