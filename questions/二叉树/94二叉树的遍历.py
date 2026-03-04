@@ -26,6 +26,23 @@ class Solution:
 
         return l
 
+# 中序的迭代解法
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = list()
+        stack = list()
+
+        while root or stack:
+            # 步骤1：一直向左走，压入栈
+            while root:
+                stack.append(root)
+                root = root.left
+            # 步骤2：左子树已处理，弹出栈顶
+            root = stack.pop()
+            res.append(root.val)
+            # 步骤3：处理右子树
+            root = root.right
+        return res
+
     # 前序
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         l = []
